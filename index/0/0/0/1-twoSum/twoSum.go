@@ -30,3 +30,18 @@ func twoSum(nums []int, target int) []int {
 	}
 	return []int{}
 }
+func twoSumV2(nums []int, target int) []int {
+	m := make(map[int]int)
+	arrLen := len(nums)
+	if arrLen < 2 {
+		panic("数组长度必须大于1")
+	}
+	for k, v := range nums {
+		idx, ok := m[target-v]
+		if ok {
+			return []int{k, idx}
+		}
+		m[v] = k
+	}
+	return []int{}
+}

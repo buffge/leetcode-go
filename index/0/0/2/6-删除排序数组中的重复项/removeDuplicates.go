@@ -41,7 +41,6 @@ func removeDuplicatesV2(nums []int) int {
 	return curr + 1
 }
 func main() {
-
 	log.Println(removeDuplicates([]int{1, 2}))
 	log.Println(removeDuplicatesV2([]int{1, 2}))
 }

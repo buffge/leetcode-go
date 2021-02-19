@@ -28,10 +28,10 @@ func addBinary(a string, b string) string {
 		}
 		arr[i] += '0'
 		if i >= maxLen-aLen+1 {
-			arr[i] += (a[i-maxLen+aLen-1] - '0')
+			arr[i] += a[i-maxLen+aLen-1] - '0'
 		}
 		if i >= maxLen-bLen+1 {
-			arr[i] += (b[i-maxLen+bLen-1] - '0')
+			arr[i] += b[i-maxLen+bLen-1] - '0'
 		}
 		if arr[i] >= '2' {
 			carry = true

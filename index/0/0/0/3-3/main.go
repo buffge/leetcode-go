@@ -20,13 +20,34 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return res
 }
+
+/*
+* 重做一遍 复习 思路同V1
+ */
+func lengthOfLongestSubstringV2(s string) int {
+	m := make(map[byte]int, len(s)) // char->idx
+	maxLen := 0
+	curr := 0
+	for i := 0; i < len(s); i++ {
+		if idx, exist := m[s[i]]; exist && idx >= curr {
+			curr = idx + 1
+		}
+		m[s[i]] = i
+		maxLen = max(maxLen, i-curr+1)
+	}
+	return maxLen
+}
 func main() {
 	s := "abcabcbb"
 	log.Println(s, ":", lengthOfLongestSubstring(s))
+	log.Println(s, ":", lengthOfLongestSubstringV2(s))
 	s = "bbbbb"
 	log.Println(s, ":", lengthOfLongestSubstring(s))
+	log.Println(s, ":", lengthOfLongestSubstringV2(s))
 	s = "pwwkew"
 	log.Println(s, ":", lengthOfLongestSubstring(s))
+	log.Println(s, ":", lengthOfLongestSubstringV2(s))
 	s = "abba"
 	log.Println(s, ":", lengthOfLongestSubstring(s))
+	log.Println(s, ":", lengthOfLongestSubstringV2(s))
 }

@@ -116,3 +116,33 @@ func maxSlidingWindowV2(nums []int, k int) []int {
 	}
 	return res
 }
+
+/*
+*
+两个数组 k个为1组
+一个存前k个最大的值的索引
+一个存后k个最大的值的索引
+*/
+func maxSlidingWindowV3(nums []int, k int) []int {
+	res := make([]int, 0, len(nums)-k+1) // 结果集
+	deque := make([]int, 1, k)           // 单调栈
+	deque[0] = 0                         // 此时窗口最大值索引为0
+	for i := 1; i < k; i++ {             // 避免了下面遍历中每次都要判断是否形成了窗口 因为n>=k  可以节省n-k次判断
+		for len(deque) > 0 && nums[i] >= nums[deque[len(deque)-1]] { // 加入新值时删除栈中所有小于当前值的元素
+			deque = deque[:len(deque)-1] // 因为如果窗口最右值大于左值 那么左值永远都不会成为窗口中的最大值
+		} // 删除所有比窗口最右值小的元素
+		deque = append(deque, i) // 将当前元素索引加入队列
+	}
+	res = append(res, nums[deque[0]]) // 第一个结果
+	for i := k; i < len(nums); i++ {  // 从第k个开始遍历 如果从0遍历的话 下面res append就得判断i>=k-1
+		if len(deque) > 0 && deque[0] == i-k { // 如果队列最大值不在窗口中 将此值删除
+			deque = deque[1:] // 窗口最右值索引为i 那么上一轮窗口最左值索引就是i-k 如果当前队列最大值时i-k的元素就将它删除
+		}
+		for len(deque) > 0 && nums[i] >= nums[deque[len(deque)-1]] { // 加入新值时删除栈中所有小于当前值的元素
+			deque = deque[:len(deque)-1]
+		}
+		deque = append(deque, i)          // 将当前元素索引加入队列
+		res = append(res, nums[deque[0]]) // 将当前窗口最大值加入结果集
+	}
+	return res
+}

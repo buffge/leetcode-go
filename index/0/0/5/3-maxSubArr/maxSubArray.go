@@ -2,13 +2,12 @@ package main
 
 import "log"
 
-/**
+/*
+*
 思路:
 
 计算出所有段最大序列和
 返回其中最大的那个
-
-
 */
 func maxSubArray(nums []int) int {
 	if len(nums) == 0 {
@@ -35,7 +34,7 @@ func maxSubArrayV2(nums []int) int {
 	if len(nums) == 0 {
 		return 0
 	}
-	max, sum := 0, 0
+	maxSum, sum := 0, 0
 	for i := 0; i < len(nums); i++ {
 		// 如果之前的序列和a为正数 那么a+nums[i]的和 一定大于 nums[i]
 		// 所有设置当前最大序列和为 a+nums[i] 否则和为nums[i]
@@ -45,11 +44,11 @@ func maxSubArrayV2(nums []int) int {
 			sum = nums[i]
 		}
 		// 计算出前面所有段中最大和
-		if sum > max {
-			max = sum
+		if sum > maxSum {
+			maxSum = sum
 		}
 	}
-	return max
+	return maxSum
 }
 
 func main() {

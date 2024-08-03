@@ -51,6 +51,7 @@ func search(matrix [][]int, target int, leftX, leftY, m, n int) bool {
 
 /*
 *
+todo 改造递归
 O(lgM * lgN) 递归耗时 实际很慢
 先找中心点 找到结束
 未找到 如果小于 丢弃左上部分 进入下半部分搜索 再进入右半部分搜索

@@ -9,14 +9,6 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func printList(head *ListNode) {
-	for head != nil {
-		fmt.Printf("->%d ", head.Val)
-		head = head.Next
-	}
-	fmt.Println("")
-}
-
 var isPalindrome = isPalindromeV1
 
 /*
@@ -54,9 +46,6 @@ func isPalindromeV1(head *ListNode) bool {
 		pB = pB.Next
 	}
 	return true
-}
-func isPalindromeV2(head *ListNode) bool {
-	return false
 }
 func main() {
 	head := &ListNode{

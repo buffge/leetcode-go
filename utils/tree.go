@@ -42,7 +42,7 @@ func GenerateTree(vals []*int) *TreeNode {
 前序遍历 中 左 右
 Preorder Traversal
 */
-func vlr(root *TreeNode) []int {
+func preOrder(root *TreeNode) []int {
 	if root == nil {
 		return nil
 	}
@@ -66,7 +66,7 @@ func vlr(root *TreeNode) []int {
 *
 中序遍历 左 中 右
 */
-func nlr(root *TreeNode) []int {
+func inOrder(root *TreeNode) []int {
 	if root == nil {
 		return nil
 	}

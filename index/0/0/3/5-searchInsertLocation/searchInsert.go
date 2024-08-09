@@ -2,8 +2,10 @@ package main
 
 import "log"
 
-/**
+/*
+*
 思路:
+
 	遍历数组,如果值大于目标值 则返回当前索引
 	否则索引+1
 */
@@ -18,7 +20,8 @@ func searchInsert(nums []int, target int) int {
 	return k
 }
 
-/**
+/*
+*
 二分法
 取中间值 如果大于等于目标值 二分左侧,左侧完 返回lo
 必须取到最左侧一个等于目标值的才算找到索引,所以大于等于都要向左继续二分
@@ -38,7 +41,23 @@ func searchInsertV2(nums []int, target int) int {
 	return lo
 }
 
+func searchInsertS1(nums []int, target int) int {
+	left, right := 0, len(nums)-1
+	for left <= right {
+		mid := left + (right-left)>>1
+		if nums[mid] == target {
+			return mid
+		}
+		if nums[mid] > target {
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+	return left
+}
 func main() {
-	log.Println(searchInsert([]int{1, 3, 5, 6}, 58))
-	log.Println(searchInsertV2([]int{1, 3, 5, 6}, 3))
+	//log.Println(searchInsert([]int{1, 3, 5, 6}, 58))
+	//log.Println(searchInsertV2([]int{1, 3, 5, 6}, 3))
+	log.Println(searchInsertS1([]int{1, 3, 5, 6}, 9))
 }
